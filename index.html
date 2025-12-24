@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas - Proposal</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #ef3966;
+            --background-light: #f8f6f6;
+            --background-dark: #221015;
+            --pastel-pink: #fff0f3;
+            --ivory: #fdfbf7;
+            --text-dark: #181113;
+            --text-light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+        }
+        
+        /* Navbar */
+        .navbar-custom {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            background: transparent;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            color: var(--primary-color);
+            opacity: 0.8;
+            animation: floatSlow 8s ease-in-out infinite;
+        }
+        
+        .logo-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #6c757d;
+        }
+        
+        .dark-mode .logo-text {
+            color: #adb5bd;
+        }
+        
+        .date-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark-mode .date-badge {
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .date-icon {
+            color: #6c757d;
+            font-size: 1.125rem;
+        }
+        
+        .date-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: #495057;
+        }
+        
+        .dark-mode .date-text {
+            color: #dee2e6;
+        }
+        
+        .music-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .music-btn {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .music-btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+        
+        .dark-mode .music-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .music-icon {
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+        
+        .music-btn:hover .music-icon {
+            transform: scale(1.1);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 1rem;
+        }
+        
+        .background-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, var(--pastel-pink) 30%, var(--background-light) 100%);
+            opacity: 0.3;
+        }
+        
+        .dark-mode .gradient-overlay {
+            background: linear-gradient(to bottom, transparent 0%, rgba(34, 16, 21, 0.8) 30%, var(--background-dark) 100%);
+        }
+        
+        .radial-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle at center, rgba(255, 240, 243, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0.6;
+            animation: pulseGentle 2s ease-in-out infinite;
+        }
+        
+        .dark-mode .radial-glow {
+            background: radial-gradient(circle at center, rgba(239, 57, 102, 0.2) 0%, rgba(34, 16, 21, 0) 70%);
+            opacity: 0.1;
+        }
+        
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .decorative-line {
+            width: 4rem;
+            height: 1px;
+            background-color: var(--primary-color);
+            opacity: 0.3;
+            margin: 0 auto 1.5rem;
+            animation: fadeIn 2s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .main-heading {
+            font-weight: 200;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: fadeIn 2s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+        
+        .christmas-text {
+            font-weight: 400;
+            font-style: italic;
+            color: var(--primary-color);
+            opacity: 0.9;
+            font-family: Georgia, serif;
+            animation: slideUp 0.8s ease-out 1s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .names-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #6c757d;
+            animation: fadeIn 2s ease-out 1.5s forwards;
+            opacity: 0;
+        }
+        
+        .dark-mode .names-container {
+            color: #adb5bd;
+        }
+        
+        .heart-icon {
+            color: var(--primary-color);
+            font-size: 0.875rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        /* Image Card */
+        .image-card {
+            max-width: 320px;
+            width: 100%;
+            height: 400px;
+            position: relative;
+            margin: 2rem auto;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(239, 57, 102, 0.1);
+            cursor: pointer;
+            animation: fadeIn 2s ease-out 2s forwards;
+            opacity: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .image-card {
+                max-width: 400px;
+                height: 400px;
+            }
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 100%;
+            background-image: url('img1.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.7s;
+        }
+        
+        .image-card:hover .card-image {
+            transform: scale(1.05);
+        }
+        
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
+            opacity: 0.7;
+            transition: opacity 0.5s;
+        }
+        
+        .image-card:hover .card-overlay {
+            opacity: 0.5;
+        }
+        
+        .card-button-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            z-index: 20;
+        }
+        
+        .card-button {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            font-weight: bold;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            border: none;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+            transform: translateY(10px);
+            text-decoration: none;
+        }
+        
+        .dark-mode .card-button {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+        }
+        
+        .image-card:hover .card-button {
+            transform: translateY(0);
+        }
+        
+        .card-button:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        .card-button-icon {
+            font-size: 1.125rem;
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+        
+        .card-button:hover .card-button-icon {
+            animation: none;
+        }
+        
+        /* Festive Message */
+        .festive-message {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 1rem;
+            animation: fadeInUp 1s ease-out 2.5s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .message-text {
+            color: #6c757d;
+            font-size: 0.875rem;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        .dark-mode .message-text {
+            color: #adb5bd;
+        }
+        
+        .stars-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .star-icon {
+            color: var(--primary-color);
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+        
+        .star-icon:nth-child(1) { animation: twinkle 4s ease-in-out 0.2s infinite; }
+        .star-icon:nth-child(2) { animation: twinkle 4s ease-in-out 0.4s infinite; }
+        .star-icon:nth-child(3) { animation: twinkle 4s ease-in-out 0.6s infinite; }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeIn 2s ease-out 2s forwards;
+            opacity: 0;
+        }
+        
+        .scroll-text {
+            font-size: 0.625rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #6c757d;
+            animation: pulseGentle 2s ease-in-out infinite;
+        }
+        
+        .scroll-icon {
+            color: #6c757d;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        /* Footer */
+        .footer {
+            width: 100%;
+            padding: 2rem 1rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease-out 3s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .dark-mode .footer {
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-text {
+            color: var(--primary-color);
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-bottom: 0.5rem;
+            animation: pulseGentle 2s ease-in-out infinite;
+        }
+        
+        .footer-heart {
+            color: var(--primary-color);
+            font-size: 1rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        .footer-subtext {
+            color: #6c757d;
+            font-size: 0.75rem;
+            font-weight: 300;
+        }
+        
+        /* Snowflakes */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: var(--primary-color);
+            opacity: 0.2;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Floating Ornaments */
+        .floating-ornament {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
+        }
+        
+        /* Heart Particles */
+        .heart-particle {
+            position: absolute;
+            color: var(--primary-color);
+            font-size: 16px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+        }
+        
+        /* Cursor Trail */
+        .cursor-trail {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(239, 57, 102, 0.3);
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        /* Typing Animation */
+        .typing-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid var(--primary-color);
+            animation: typing 3.5s steps(40, end), blinkCaret 0.75s step-end infinite;
+        }
+        
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-10px) rotate(-3deg); }
+        }
+        
+        @keyframes pulseGentle {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blinkCaret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color) }
+        }
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(239, 57, 102, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(239, 57, 102, 0.8)); }
+        }
+        
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 3.5rem;
+            }
+            
+            .navbar-custom {
+                padding: 1rem;
+            }
+            
+            .date-badge {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-heading {
+                font-size: 2.75rem;
+            }
+            
+            .names-container {
+                font-size: 1rem;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor trail container -->
+    <div id="cursor-trail"></div>
+    
+    <!-- Navbar -->
+    <nav class="navbar-custom d-flex justify-content-between align-items-center">
+        <div class="logo-container">
+            <span class="material-symbols-outlined logo-icon">redeem</span>
+            <span class="logo-text">Proposal</span>
+        </div>
+        
+        <div class="d-flex align-items-center gap-3">
+            <div class="date-badge d-none d-md-flex">
+                <span class="material-symbols-outlined date-icon">calendar_today</span>
+                <span class="date-text">12.25.2023</span>
+            </div>
+            
+            <button id="music-toggle" class="music-btn" aria-label="Toggle Music">
+                <span class="material-symbols-outlined music-icon">music_note</span>
+            </button>
+            
+            <button id="theme-toggle" class="music-btn" aria-label="Toggle Theme">
+                <span class="material-symbols-outlined music-icon">dark_mode</span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Background Effects -->
+        <div class="background-effects">
+            <div class="gradient-overlay"></div>
+            <div class="radial-glow"></div>
+            
+            <!-- Snowflakes will be generated here -->
+            <div id="snow-container"></div>
+            
+            <!-- Floating Ornaments -->
+            <div class="floating-ornament" style="left: 5%; top: 10%; animation: float 6s ease-in-out infinite;">
+                <span class="material-symbols-outlined" style="color: var(--primary-color); opacity: 0.4; font-size: 1.5rem;">star</span>
+            </div>
+            <div class="floating-ornament" style="left: 85%; top: 15%; animation: float 10s ease-in-out infinite;">
+                <span class="material-symbols-outlined" style="color: var(--primary-color); opacity: 0.3; font-size: 1.25rem;">favorite</span>
+            </div>
+            <div class="floating-ornament" style="left: 15%; top: 80%; animation: float 8s ease-in-out infinite;">
+                <span class="material-symbols-outlined" style="color: var(--primary-color); opacity: 0.2; font-size: 1rem;">bolt</span>
+            </div>
+            <div class="floating-ornament" style="left: 75%; top: 70%; animation: float 6s ease-in-out infinite;">
+                <span class="material-symbols-outlined" style="color: var(--primary-color); opacity: 0.4; font-size: 1.5rem;">diamond</span>
+            </div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="decorative-line"></div>
+            
+            <h1 class="main-heading">
+                <span style="display: block; font-size: 4rem; line-height: 1;">Merry</span>
+                <span class="christmas-text" style="font-size: 5rem;">Christmas</span>
+            </h1>
+            
+            <div class="names-container">
+                <span>Mahesh</span>
+                <span class="material-symbols-outlined heart-icon">favorite</span>
+                <span>Kshitija</span>
+            </div>
+            
+            <!-- Image Card -->
+            <div class="image-card">
+                <div class="card-image"></div>
+                <div class="card-overlay"></div>
+                <div id="heart-container" class="heart-container"></div>
+                
+                <div class="card-button-container">
+                    <a href="letter.html" class="card-button">
+                        <span>Read My Letter</span>
+                        <span class="material-symbols-outlined card-button-icon">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Festive Message -->
+            <div class="festive-message">
+                <p class="message-text">"On this magical Christmas, I wish for us to create our own forever story together."</p>
+                <div class="stars-container">
+                    <span class="material-symbols-outlined star-icon">star</span>
+                    <span class="material-symbols-outlined star-icon">star</span>
+                    <span class="material-symbols-outlined star-icon">star</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll Down</span>
+            <span class="material-symbols-outlined scroll-icon">keyboard_arrow_down</span>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                Made with all my love 
+                <span class="material-symbols-outlined footer-heart">favorite</span>
+            </p>
+            <p class="footer-subtext">Forever &amp; Always</p>
+        </div>
+    </footer>
+    
+    <!-- Audio Player for Music -->
+    <audio id="background-music" loop>
+        <source src="christmas-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- JavaScript -->
+    <script>
+        // Generate dynamic snowflakes
+        function createSnowflakes() {
+            const snowContainer = document.getElementById('snow-container');
+            const snowflakeCount = 25;
+            
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                
+                const size = Math.random() * 12 + 4;
+                const left = Math.random() * 100;
+                const duration = Math.random() * 15 + 8;
+                const delay = Math.random() * 10;
+                const opacity = Math.random() * 0.3 + 0.1;
+                const symbol = Math.random() > 0.5 ? '❄' : '❅';
+                
+                snowflake.textContent = symbol;
+                snowflake.style.left = `${left}%`;
+                snowflake.style.fontSize = `${size}px`;
+                snowflake.style.opacity = opacity;
+                snowflake.style.animationDuration = `${duration}s`;
+                snowflake.style.animationDelay = `${delay}s`;
+                
+                snowContainer.appendChild(snowflake);
+            }
+        }
+        
+        // Cursor trail effect
+        function createCursorTrail() {
+            const trailContainer = document.getElementById('cursor-trail');
+            let trailElements = [];
+            
+            document.addEventListener('mousemove', (e) => {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.left = `${e.pageX - 4}px`;
+                trail.style.top = `${e.pageY - 4}px`;
+                
+                const hue = Math.floor(Math.random() * 10) + 330;
+                trail.style.backgroundColor = `hsla(${hue}, 80%, 60%, 0.3)`;
+                
+                trailContainer.appendChild(trail);
+                trailElements.push(trail);
+                
+                if (trailElements.length > 15) {
+                    const oldTrail = trailElements.shift();
+                    if (oldTrail.parentNode) {
+                        oldTrail.parentNode.removeChild(oldTrail);
+                    }
+                }
+                
+                setTimeout(() => {
+                    trail.style.opacity = '0';
+                    trail.style.transform = 'scale(0.5)';
+                    
+                    setTimeout(() => {
+                        if (trail.parentNode) {
+                            trail.parentNode.removeChild(trail);
+                        }
+                    }, 300);
+                }, 100);
+            });
+        }
+        
+        // Create floating hearts on image hover
+        function setupHeartEffect() {
+            const heartContainer = document.getElementById('heart-container');
+            const imageCard = document.querySelector('.image-card');
+            
+            imageCard.addEventListener('mouseenter', () => {
+                const heartInterval = setInterval(() => {
+                    if (!imageCard.matches(':hover')) {
+                        clearInterval(heartInterval);
+                        return;
+                    }
+                    
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-particle';
+                    heart.innerHTML = '❤';
+                    
+                    const x = Math.random() * 80 + 10;
+                    const y = Math.random() * 80 + 10;
+                    
+                    heart.style.left = `${x}%`;
+                    heart.style.top = `${y}%`;
+                    heart.style.fontSize = `${Math.random() * 20 + 12}px`;
+                    heart.style.opacity = Math.random() * 0.7 + 0.3;
+                    
+                    heartContainer.appendChild(heart);
+                    
+                    const duration = Math.random() * 2 + 1;
+                    heart.style.transition = `all ${duration}s ease-out`;
+                    
+                    setTimeout(() => {
+                        heart.style.opacity = '0';
+                        heart.style.transform = `translateY(-${Math.random() * 50 + 30}px) translateX(${Math.random() * 40 - 20}px) scale(0.5)`;
+                    }, 10);
+                    
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, duration * 1000);
+                    
+                }, 300);
+                
+                imageCard.dataset.heartInterval = heartInterval;
+            });
+            
+            imageCard.addEventListener('mouseleave', () => {
+                if (imageCard.dataset.heartInterval) {
+                    clearInterval(parseInt(imageCard.dataset.heartInterval));
+                }
+            });
+        }
+        
+        // Toggle music
+        function setupMusicButton() {
+            const musicButton = document.getElementById('music-toggle');
+            const musicIcon = musicButton.querySelector('.material-symbols-outlined');
+            const audioPlayer = document.getElementById('background-music');
+            let isPlaying = false;
+            
+            audioPlayer.volume = 0.3;
+            
+            audioPlayer.addEventListener('play', function() {
+                isPlaying = true;
+                musicIcon.textContent = 'music_off';
+                musicButton.style.animation = 'rotateSlow 3s linear infinite';
+            });
+            
+            audioPlayer.addEventListener('pause', function() {
+                isPlaying = false;
+                musicIcon.textContent = 'music_note';
+                musicButton.style.animation = '';
+            });
+            
+            musicButton.addEventListener('click', function() {
+                if (isPlaying) {
+                    audioPlayer.pause();
+                } else {
+                    audioPlayer.play().catch(e => {
+                        console.log("Autoplay prevented");
+                    });
+                }
+                
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        }
+        
+        // Toggle theme
+        function setupThemeToggle() {
+            const themeButton = document.getElementById('theme-toggle');
+            const icon = themeButton.querySelector('.material-symbols-outlined');
+            
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark-mode');
+                icon.textContent = 'light_mode';
+            }
+            
+            themeButton.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.textContent = 'light_mode';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.textContent = 'dark_mode';
+                    localStorage.setItem('theme', 'light');
+                }
+                
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.inset = '0';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = document.body.classList.contains('dark-mode') 
+                    ? 'rgba(255, 255, 255, 0.1)' 
+                    : 'rgba(0, 0, 0, 0.1)';
+                ripple.style.animation = 'pulseGentle 1s ease-out';
+                themeButton.appendChild(ripple);
+                
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 1000);
+            });
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            createSnowflakes();
+            createCursorTrail();
+            setupHeartEffect();
+            setupMusicButton();
+            setupThemeToggle();
+            
+            // Try to autoplay music
+            setTimeout(() => {
+                const audio = document.getElementById('background-music');
+                audio.play().catch(e => {
+                    console.log("Autoplay prevented on load");
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

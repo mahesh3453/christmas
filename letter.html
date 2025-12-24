@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter - Christmas Proposal</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #ef3966;
+            --background-light: #f8f6f6;
+            --background-dark: #221015;
+            --text-dark: #181113;
+            --text-muted: #89616b;
+            --card-light: #ffffff;
+            --card-dark: #2a151b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            transition: all 0.3s;
+        }
+        
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: #f8f9fa;
+        }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .dark-mode .glass-effect {
+            background: rgba(34, 16, 21, 0.8);
+        }
+        
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e9ecef;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2.5rem;
+        }
+        
+        .dark-mode .header {
+            background: rgba(34, 16, 21, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .header-icon {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .header-title {
+            color: var(--text-dark);
+            font-size: 1.125rem;
+            font-weight: bold;
+            letter-spacing: -0.015em;
+        }
+        
+        .dark-mode .header-title {
+            color: #f8f9fa;
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            margin-left: 0.5rem;
+        }
+        
+        .dark-mode .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .theme-toggle-btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+        
+        .dark-mode .theme-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .theme-icon {
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+        
+        .theme-toggle-btn:hover .theme-icon {
+            transform: scale(1.1);
+        }
+        
+        /* Mini Player */
+        .mini-player {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--background-light);
+            border-radius: 50px;
+            padding: 0.375rem 1rem;
+            border: 1px solid #dee2e6;
+        }
+        
+        .dark-mode .mini-player {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .player-icon {
+            background: rgba(239, 57, 102, 0.1);
+            padding: 0.375rem;
+            border-radius: 50%;
+            color: var(--primary-color);
+        }
+        
+        .player-title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+        
+        .dark-mode .player-title {
+            color: #f8f9fa;
+        }
+        
+        .player-subtitle {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            line-height: 1.2;
+        }
+        
+        /* Layout Container */
+        .layout-container {
+            position: relative;
+            flex: 1;
+        }
+        
+        /* Decorative Background */
+        .decorative-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .bg-blob-1 {
+            position: absolute;
+            top: -10%;
+            left: -5%;
+            width: 40%;
+            height: 40%;
+            background: rgba(239, 57, 102, 0.05);
+            border-radius: 50%;
+            filter: blur(120px);
+        }
+        
+        .bg-blob-2 {
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 30%;
+            height: 30%;
+            background: rgba(239, 57, 102, 0.1);
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            padding: 2rem 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .main-content {
+                padding: 2rem 10rem;
+            }
+        }
+        
+        /* Love Letter Card */
+        .love-letter-card {
+            width: 100%;
+            background: var(--card-light);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(239, 57, 102, 0.05);
+            border: 1px solid #f1f3f5;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .dark-mode .love-letter-card {
+            background: var(--card-dark);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .card-top-decoration {
+            height: 0.5rem;
+            width: 100%;
+            background: linear-gradient(to right, #fecdd3, var(--primary-color), #fecdd3);
+            opacity: 0.8;
+        }
+        
+        .card-content {
+            padding: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .card-content {
+                padding: 3rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .card-content {
+                padding: 4rem;
+            }
+        }
+        
+        /* Letter Metadata */
+        .letter-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid #f1f3f5;
+            padding-bottom: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dark-mode .letter-meta {
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        /* Salutation */
+        .salutation {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin: 1rem 0;
+        }
+        
+        .dark-mode .salutation {
+            color: #f8f9fa;
+        }
+        
+        @media (min-width: 768px) {
+            .salutation {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Letter Content */
+        .letter-content {
+            font-size: 1.125rem;
+            line-height: 1.75;
+            color: rgba(24, 17, 19, 0.9);
+            font-weight: 300;
+            min-height: 300px;
+        }
+        
+        .dark-mode .letter-content {
+            color: rgba(248, 249, 250, 0.9);
+        }
+        
+        .letter-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .letter-content {
+                font-size: 1.25rem;
+            }
+        }
+        
+        /* Typing Cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: var(--primary-color);
+            vertical-align: middle;
+            margin-left: 0.25rem;
+            animation: blinkCursor 1s infinite;
+        }
+        
+        /* Signature */
+        .signature {
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+        }
+        
+        .signature-name {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        .signature-from {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        
+        .dark-mode .signature-from {
+            color: #f8f9fa;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            width: 100%;
+            justify-content: center;
+            animation: fadeIn 1s ease-out 1s forwards;
+            opacity: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .action-buttons {
+                flex-direction: row;
+            }
+        }
+        
+        .btn-secondary {
+            min-width: 140px;
+            height: 3rem;
+            padding: 0 1.5rem;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark-mode .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .btn-primary {
+            position: relative;
+            min-width: 200px;
+            height: 3.5rem;
+            padding: 0 2rem;
+            background: var(--primary-color);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgba(239, 57, 102, 0.3);
+            transition: transform 0.3s;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+        
+        .btn-primary-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .btn-primary:hover .btn-primary-overlay {
+            transform: translateY(0);
+        }
+        
+        .btn-icon {
+            transition: transform 0.3s;
+        }
+        
+        .btn-primary:hover .btn-icon {
+            animation: bounce 1s infinite;
+        }
+        
+        /* Music Section */
+        .music-section {
+            margin-top: 2rem;
+        }
+        
+        .music-title {
+            font-size: 0.875rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+            padding-left: 0.25rem;
+        }
+        
+        .music-player {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--card-light);
+            border-radius: 0.75rem;
+            border: 1px solid #f1f3f5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark-mode .music-player {
+            background: var(--card-dark);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        @media (min-width: 768px) {
+            .music-player {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+        
+        .music-cover {
+            position: relative;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .music-cover-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .music-cover:hover .music-cover-overlay {
+            opacity: 1;
+        }
+        
+        .music-cover-img {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .music-info {
+            flex: 1;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .music-info {
+                text-align: left;
+            }
+        }
+        
+        .music-track {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+        
+        .dark-mode .music-track {
+            color: #f8f9fa;
+        }
+        
+        .music-details {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .control-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .control-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .play-btn {
+            width: 3rem;
+            height: 3rem;
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 6px rgba(239, 57, 102, 0.2);
+        }
+        
+        .play-btn:hover {
+            background: rgba(239, 57, 102, 0.9);
+            color: white;
+        }
+        
+        .volume-control {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            width: 6rem;
+            margin-left: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .volume-control {
+                display: flex;
+            }
+        }
+        
+        .volume-slider {
+            height: 0.25rem;
+            flex: 1;
+            background: #e9ecef;
+            border-radius: 0.125rem;
+            overflow: hidden;
+        }
+        
+        .dark-mode .volume-slider {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .volume-level {
+            height: 100%;
+            width: 66.66%;
+            background: var(--primary-color);
+            border-radius: 0.125rem;
+        }
+        
+        /* Footer */
+        .footer {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 2.5rem 1.25rem;
+            text-align: center;
+            border-top: 1px solid #f1f3f5;
+            margin-top: auto;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .dark-mode .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: transparent;
+        }
+        
+        .footer-heart {
+            color: rgba(239, 57, 102, 0.6);
+            font-size: 1.25rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        .footer-text {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Ripple Effect */
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .main-content {
+                padding: 1.5rem;
+            }
+            
+            .card-content {
+                padding: 1.5rem;
+            }
+            
+            .salutation {
+                font-size: 1.75rem;
+            }
+            
+            .letter-content {
+                font-size: 1rem;
+            }
+            
+            .mini-player {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-title {
+                font-size: 1rem;
+            }
+            
+            .music-player {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div class="header-logo">
+            <span class="material-symbols-outlined header-icon">local_florist</span>
+            <h2 class="header-title">Merry Christmas</h2>
+        </div>
+        
+        <!-- Right Side Controls -->
+        <div class="d-flex align-items-center gap-2">
+            <!-- Mini Player -->
+            <div class="mini-player d-none d-md-flex align-items-center me-3">
+                <div class="player-icon">
+                    <span class="material-symbols-outlined">music_note</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="player-title">Soft Piano</span>
+                    <span class="player-subtitle">Playing now</span>
+                </div>
+                <button class="btn btn-link p-0 ms-2 text-decoration-none text-primary" id="music-control">
+                    <span class="material-symbols-outlined">pause_circle</span>
+                </button>
+            </div>
+            
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                <span class="material-symbols-outlined theme-icon">dark_mode</span>
+            </button>
+            
+            <!-- Mobile Menu Button -->
+            <button class="btn d-md-none p-0 ms-2" id="mobile-menu-btn">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Main Layout -->
+    <div class="layout-container d-flex flex-column">
+        <!-- Decorative Background -->
+        <div class="decorative-bg">
+            <div class="bg-blob-1"></div>
+            <div class="bg-blob-2"></div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content d-flex justify-content-center">
+            <div class="d-flex flex-column" style="max-width: 800px; width: 100%; gap: 2rem;">
+                <!-- Love Letter Card -->
+                <main class="d-flex flex-column align-items-center">
+                    <div class="love-letter-card">
+                        <div class="card-top-decoration"></div>
+                        <div class="card-content">
+                            <!-- Date & Location -->
+                            <div class="letter-meta">
+                                <span>25th December, 2023</span>
+                                <div class="location">
+                                    <span class="material-symbols-outlined" style="font-size: 0.875rem;">location_on</span>
+                                    <span>Heart</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Salutation -->
+                            <h1 class="salutation">My Dearest Kshitija,</h1>
+                            
+                            <!-- Letter Content -->
+                            <div class="letter-content" id="letter-content">
+                                <p>Our 2025 was not easy.
+                                    We went through so many difficult moments together — family problems, overthinking, trust issues, misunderstandings, and many arguments.
+                                    But even after facing all of this, we never became separate, and that is what makes me the happiest..</p>
+                                <p>No matter how many problems came our way, we chose each other every time.
+                                        And that is something I am truly proud of us for.
+
+                                        I promise you, and I pray from my heart, that no matter what happens in the future, we will never leave each other.</p>
+                                <p>We will always stay together, hand in hand.
+                                    I truly believe our future will be very bright.
+
+                                    2025 taught us a lot.
+                                    It tested us, challenged us, and made us stronger.
+                                    Even after facing so many problems, today we are still together, and soon we will complete two beautiful years of togetherness.
+                                    Sometimes I feel this is also God’s wish — that we stay together forever.
+                                    That is why even after putting us through so many tests, He kept us united.
+                                    <p>I pray that in 2026, God blesses me with a good job, stability, and strength, so that I can take care of our future and keep us happy.
+                                        I also pray that 2026 becomes a very beautiful year for you —
+                                        your health, your job, your family, and our relationship — may everything be filled with peace, success, and happiness.</p>
+                                        <p>You are my constant, my support, and my safe place.
+                                    No matter what we faced, we never gave up on us.
+                                    And that is my biggest belief — us.</p><span class="typing-cursor"></span></p>
+                            </div>
+                            
+                            <!-- Signature -->
+                            <div class="signature">
+                                <span class="signature-name">Forever yours,</span>
+                                <span class="signature-from">Mahesh</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <!-- Replay Button -->
+                        <button class="btn-secondary" id="replay-btn">
+                            Replay Letter
+                        </button>
+                        
+                        <!-- Open Gift Button - Navigates to memories.html -->
+                        <button class="btn-primary" id="gift-btn">
+                            <span class="material-symbols-outlined btn-icon">card_giftcard</span>
+                            <span>Open Your Gift</span>
+                            <div class="btn-primary-overlay"></div>
+                        </button>
+                    </div>
+                </main>
+                
+                <!-- Music Section -->
+                <div class="music-section">
+                    <p class="music-title">Mood Setting</p>
+                    <div class="music-player">
+                        <!-- Music Cover -->
+                        <div class="music-cover">
+                            <div class="music-cover-img"></div>
+                            <div class="music-cover-overlay">
+                                <span class="material-symbols-outlined text-white">play_arrow</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Music Info -->
+                        <div class="music-info">
+                            <p class="music-track">Christmas Memories</p>
+                            <p class="music-details">Piano Instrumental • 3:42</p>
+                        </div>
+                        
+                        <!-- Music Controls -->
+                        <div class="music-controls">
+                            <button class="control-btn" id="prev-btn">
+                                <span class="material-symbols-outlined">skip_previous</span>
+                            </button>
+                            <button class="control-btn play-btn" id="play-btn">
+                                <span class="material-symbols-outlined">pause</span>
+                            </button>
+                            <button class="control-btn" id="next-btn">
+                                <span class="material-symbols-outlined">skip_next</span>
+                            </button>
+                            
+                            <!-- Volume Control -->
+                            <div class="volume-control">
+                                <span class="material-symbols-outlined" style="font-size: 0.875rem; color: var(--text-muted);">volume_down</span>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="d-flex justify-content-center">
+                <span class="material-symbols-outlined footer-heart">favorite</span>
+            </div>
+            <p class="footer-text">Made with love, for us. Merry Christmas.</p>
+        </footer>
+    </div>
+    
+    <!-- Audio Player -->
+    <audio id="christmas-music" loop>
+        <source src="christmas-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- JavaScript -->
+    <script>
+        // Theme toggle functionality
+        function setupThemeToggle() {
+            const themeButton = document.getElementById('theme-toggle');
+            const icon = themeButton.querySelector('.material-symbols-outlined');
+            
+            // Check for saved theme or prefer-color-scheme
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const savedTheme = localStorage.getItem('theme');
+            
+            // Set initial theme
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark-mode');
+                icon.textContent = 'light_mode';
+            } else {
+                document.body.classList.remove('dark-mode');
+                icon.textContent = 'dark_mode';
+            }
+            
+            // Toggle theme on button click
+            themeButton.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.textContent = 'light_mode';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.textContent = 'dark_mode';
+                    localStorage.setItem('theme', 'light');
+                }
+                
+                // Add ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.inset = '0';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = document.body.classList.contains('dark-mode') 
+                    ? 'rgba(255, 255, 255, 0.1)' 
+                    : 'rgba(0, 0, 0, 0.1)';
+                ripple.style.animation = 'ripple 1s ease-out';
+                themeButton.appendChild(ripple);
+                
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 1000);
+            });
+        }
+        
+        // Typing animation for letter content
+        function typeLetterContent() {
+            const contentElement = document.getElementById('letter-content');
+            const paragraphs = contentElement.querySelectorAll('p');
+            const typingCursor = contentElement.querySelector('.typing-cursor');
+            
+            paragraphs.forEach(p => p.style.opacity = '0');
+            
+            let delay = 0;
+            paragraphs.forEach((paragraph, index) => {
+                const text = paragraph.textContent;
+                paragraph.textContent = '';
+                paragraph.style.opacity = '1';
+                
+                const characters = text.split('');
+                
+                characters.forEach((char, charIndex) => {
+                    setTimeout(() => {
+                        paragraph.textContent += char;
+                        
+                        if (index === paragraphs.length - 1 && charIndex === characters.length - 1) {
+                            typingCursor.style.display = 'inline-block';
+                        }
+                    }, delay + charIndex * 30);
+                });
+                
+                delay += characters.length * 30 + 500;
+            });
+        }
+        
+        // Play button functionality
+        function setupMusicControls() {
+            const playBtn = document.getElementById('play-btn');
+            const playIcon = playBtn.querySelector('.material-symbols-outlined');
+            const audioPlayer = document.getElementById('christmas-music');
+            let isPlaying = true;
+            
+            audioPlayer.volume = 0.3;
+            
+            // Update play/pause state
+            audioPlayer.addEventListener('play', function() {
+                isPlaying = true;
+                playIcon.textContent = 'pause';
+            });
+            
+            audioPlayer.addEventListener('pause', function() {
+                isPlaying = false;
+                playIcon.textContent = 'play_arrow';
+            });
+            
+            // Play/pause button
+            playBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    audioPlayer.pause();
+                } else {
+                    audioPlayer.play().catch(e => {
+                        console.log("Playback failed:", e);
+                    });
+                }
+            });
+            
+            // Header music control
+            const headerMusicBtn = document.getElementById('music-control');
+            const headerMusicIcon = headerMusicBtn.querySelector('.material-symbols-outlined');
+            
+            headerMusicBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    audioPlayer.pause();
+                    headerMusicIcon.textContent = 'play_circle';
+                } else {
+                    audioPlayer.play().catch(e => {
+                        console.log("Playback failed:", e);
+                    });
+                    headerMusicIcon.textContent = 'pause_circle';
+                }
+            });
+            
+            // Previous/Next buttons
+            document.getElementById('prev-btn').addEventListener('click', function() {
+                audioPlayer.currentTime = 0;
+                if (!isPlaying) audioPlayer.play();
+            });
+            
+            document.getElementById('next-btn').addEventListener('click', function() {
+                audioPlayer.currentTime = Math.max(0, audioPlayer.duration - 30);
+                if (!isPlaying) audioPlayer.play();
+            });
+            
+            // Try to autoplay
+            setTimeout(() => {
+                audioPlayer.play().catch(e => {
+                    console.log("Autoplay prevented on letter page");
+                });
+            }, 1500);
+        }
+        
+        // Action buttons functionality
+        function setupActionButtons() {
+            // Replay button
+            document.getElementById('replay-btn').addEventListener('click', () => {
+                const cursor = document.querySelector('.typing-cursor');
+                cursor.style.display = 'none';
+                
+                setTimeout(() => {
+                    typeLetterContent();
+                }, 300);
+                
+                const btn = document.getElementById('replay-btn');
+                btn.style.transform = 'translateY(2px)';
+                setTimeout(() => {
+                    btn.style.transform = 'translateY(0)';
+                }, 150);
+            });
+            
+            // Gift button - Navigates to memories.html with confetti effect
+            document.getElementById('gift-btn').addEventListener('click', function() {
+                createConfetti();
+                
+                this.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    window.location.href = 'memories.html';
+                }, 1500);
+            });
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#ef3966', '#ff7eb3', '#ffafcc', '#ffd6e0', '#c8f7c5'];
+            const container = document.querySelector('body');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.top = '0';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.opacity = '1';
+                confetti.style.zIndex = '9999';
+                
+                container.appendChild(confetti);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 2 + Math.random() * 2;
+                const gravity = 0.1;
+                
+                let x = 0;
+                let y = 0;
+                let vx = Math.cos(angle) * velocity;
+                let vy = Math.sin(angle) * velocity;
+                
+                let opacity = 1;
+                let rotation = 0;
+                
+                const animate = () => {
+                    x += vx;
+                    y += vy;
+                    vy += gravity;
+                    opacity -= 0.02;
+                    rotation += 5;
+                    
+                    if (opacity <= 0 || y > window.innerHeight) {
+                        container.removeChild(confetti);
+                        return;
+                    }
+                    
+                    confetti.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+                    confetti.style.opacity = opacity;
+                    
+                    requestAnimationFrame(animate);
+                };
+                
+                animate();
+            }
+        }
+        
+        // Mobile menu button
+        function setupMobileMenu() {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            menuBtn.addEventListener('click', () => {
+                // Create a simple mobile menu overlay
+                const mobileMenu = document.createElement('div');
+                mobileMenu.innerHTML = `
+                    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+                              background: rgba(0,0,0,0.8); z-index: 10000; 
+                              display: flex; flex-direction: column; align-items: center; 
+                              justify-content: center; gap: 1.5rem; animation: fadeIn 0.3s ease-out;">
+                        <a href="index.html" style="color: white; text-decoration: none; font-size: 1.25rem; 
+                           padding: 1rem 2rem; border-radius: 0.5rem; background: rgba(239,57,102,0.8);">
+                           Home</a>
+                        <a href="memories.html" style="color: white; text-decoration: none; font-size: 1.25rem; 
+                           padding: 1rem 2rem; border-radius: 0.5rem; background: rgba(239,57,102,0.8);">
+                           Memories</a>
+                        <a href="proposal.html" style="color: white; text-decoration: none; font-size: 1.25rem; 
+                           padding: 1rem 2rem; border-radius: 0.5rem; background: rgba(239,57,102,0.8);">
+                           Proposal</a>
+                        <button id="close-menu" style="color: white; background: transparent; border: none; 
+                                font-size: 1.5rem; margin-top: 2rem; cursor: pointer;">
+                                ×</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(mobileMenu);
+                
+                // Close menu functionality
+                document.getElementById('close-menu').addEventListener('click', () => {
+                    mobileMenu.style.animation = 'fadeOut 0.3s ease-out forwards';
+                    setTimeout(() => {
+                        if (mobileMenu.parentNode) {
+                            mobileMenu.parentNode.removeChild(mobileMenu);
+                        }
+                    }, 300);
+                });
+                
+                // Add fadeOut animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes fadeOut {
+                        from { opacity: 1; }
+                        to { opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            });
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setupThemeToggle();
+            
+            setTimeout(() => {
+                typeLetterContent();
+            }, 1000);
+            
+            setupMusicControls();
+            setupActionButtons();
+            setupMobileMenu();
+            
+            // Add CSS for animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
