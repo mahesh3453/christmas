@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -64,7 +64,7 @@
             -webkit-backdrop-filter: blur(12px);
         }
         
-        .dark-mode .frosted-glass {
+        body.dark-mode .frosted-glass {
             background: rgba(34, 16, 21, 0.75);
         }
         
@@ -79,7 +79,7 @@
             padding: 1rem 2.5rem;
         }
         
-        .dark-mode .main-nav {
+        body.dark-mode .main-nav {
             border-bottom-color: var(--border-dark);
             background: rgba(34, 16, 21, 0.8);
         }
@@ -102,7 +102,7 @@
             letter-spacing: -0.01em;
         }
         
-        .dark-mode .nav-title {
+        body.dark-mode .nav-title {
             color: #ffffff;
         }
         
@@ -123,6 +123,10 @@
             font-weight: 600;
             text-decoration: none;
             transition: color 0.3s;
+        }
+        
+        body.dark-mode .nav-link {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         .nav-link:hover {
@@ -161,7 +165,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
-        .dark-mode .user-avatar {
+        body.dark-mode .user-avatar {
             border-color: var(--background-dark);
         }
         
@@ -184,7 +188,7 @@
             margin-bottom: 0.5rem;
         }
         
-        .dark-mode .page-title {
+        body.dark-mode .page-title {
             color: #ffffff;
         }
         
@@ -198,6 +202,10 @@
             color: var(--text-muted);
             font-size: 1.125rem;
             font-weight: 500;
+        }
+        
+        body.dark-mode .page-subtitle {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         /* Action Buttons */
@@ -220,9 +228,10 @@
             align-items: center;
             gap: 0.5rem;
             transition: all 0.3s;
+            cursor: pointer;
         }
         
-        .dark-mode .btn-secondary {
+        body.dark-mode .btn-secondary {
             background: #3a2e32;
             border-color: #4a3b40;
             color: #ffffff;
@@ -232,7 +241,7 @@
             background: #f8f9fa;
         }
         
-        .dark-mode .btn-secondary:hover {
+        body.dark-mode .btn-secondary:hover {
             background: #4a3b40;
         }
         
@@ -250,6 +259,7 @@
             gap: 0.5rem;
             box-shadow: 0 4px 6px rgba(239, 57, 102, 0.2);
             transition: all 0.3s;
+            cursor: pointer;
         }
         
         .btn-primary:hover {
@@ -316,6 +326,7 @@
             justify-content: center;
             opacity: 0;
             transition: all 0.3s;
+            cursor: pointer;
         }
         
         .slideshow-container:hover .slide-nav-btn {
@@ -476,7 +487,7 @@
             margin: 0 auto 2rem;
         }
         
-        .dark-mode .cta-divider {
+        body.dark-mode .cta-divider {
             background: #4a3b40;
         }
         
@@ -487,7 +498,7 @@
             margin-bottom: 1rem;
         }
         
-        .dark-mode .cta-title {
+        body.dark-mode .cta-title {
             color: #ffffff;
         }
         
@@ -502,6 +513,10 @@
             font-size: 1.125rem;
             max-width: 32rem;
             margin: 0 auto 2rem;
+        }
+        
+        body.dark-mode .cta-text {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         .cta-button {
@@ -519,6 +534,7 @@
             box-shadow: 0 10px 25px rgba(239, 57, 102, 0.3);
             transition: all 0.3s;
             text-decoration: none;
+            cursor: pointer;
         }
         
         .cta-button:hover {
@@ -543,12 +559,125 @@
             to { transform: translateY(0); opacity: 1; }
         }
         
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
         .fade-in {
             animation: fadeIn 1s ease-out;
         }
         
         .slide-up {
             animation: slideUp 0.8s ease-out;
+        }
+        
+        /* Grid View Modal */
+        .grid-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            padding: 2rem;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        body.dark-mode .grid-modal {
+            background: rgba(0, 0, 0, 0.98);
+        }
+        
+        .grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        
+        .grid-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .close-grid {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        
+        .close-grid:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        
+        .grid-item {
+            position: relative;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            height: 250px;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(239, 57, 102, 0.3);
+        }
+        
+        .grid-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .grid-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 1.5rem 1rem 1rem;
+            color: white;
+            transform: translateY(5px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        .grid-item:hover .grid-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .grid-date {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-bottom: 0.25rem;
+        }
+        
+        .grid-item-title {
+            font-weight: bold;
+            font-size: 1rem;
+            margin: 0;
         }
         
         /* Responsive */
@@ -570,10 +699,29 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 1rem;
+            }
+            
+            .grid-item {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-item {
+                height: 180px;
+            }
         }
     </style>
 </head>
-<body>
+<body class="dark-mode">
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="container">
@@ -593,8 +741,8 @@
                 
                 <!-- Right Side -->
                 <div class="d-flex align-items-center gap-3">
-                    <button class="notification-btn">
-                        <span class="material-symbols-outlined">notifications</span>
+                    <button class="notification-btn" id="theme-toggle">
+                        <span class="material-symbols-outlined">light_mode</span>
                     </button>
                 </div>
             </div>
@@ -612,7 +760,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="action-buttons">
-                        <button class="btn-secondary">
+                        <button class="btn-secondary" id="gridViewBtn">
                             <span class="material-symbols-outlined">grid_view</span>
                             Grid View
                         </button>
@@ -629,9 +777,7 @@
         <div class="slideshow-container slide-up">
             <div class="slideshow-stage">
                 <!-- Active Slide -->
-                <div class="active-slide" id="activeSlide" 
-                     style="background-image: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
-                </div>
+                <div class="active-slide" id="activeSlide"></div>
                 
                 <!-- Overlay -->
                 <div class="slide-overlay"></div>
@@ -645,17 +791,17 @@
                 </button>
                 
                 <!-- Counter -->
-                <div class="slide-counter" id="slideCounter">3 of 12</div>
+                <div class="slide-counter" id="slideCounter">3 of 8</div>
                 
                 <!-- Caption -->
                 <div class="slide-caption">
                     <div class="caption-date">
                         <span class="material-symbols-outlined caption-icon">calendar_month</span>
-                        2024/25
+                        <span id="slideDate">December 2021</span>
                     </div>
-                    <h2 class="caption-title" id="slideTitle">Reunited at Last</h2>
+                    <h2 class="caption-title" id="slideTitle">First date in park</h2>
                     <p class="caption-description" id="slideDescription">
-                        After months apart, the snow fell just as we found each other again at the station. The best Christmas gift.
+                        Our first date in the park was where two hearts met and one beautiful story began.
                     </p>
                 </div>
             </div>
@@ -691,7 +837,7 @@
                 image: 'img10.jpg',
                 date: 'Sept 2024',
                 title: 'Our First Birthday',
-                description: 'The beginning of our tradition together.'
+                description: 'The beginning of our tradition together. Hot chocolate by the fire.'
             },
             {
                 id: 2,
@@ -712,7 +858,7 @@
                 image: 'img5.jpg',
                 date: 'December 2021',
                 title: 'Bullet Ride',
-                description: 'On a long drive together, we didn’t need words—our hearts already knew the way.'
+                description: 'On a long drive together, we didn\'t need words—our hearts already knew the way.'
             },
             {
                 id: 5,
@@ -759,6 +905,7 @@
             const slide = slides[currentSlide];
             const activeSlideEl = document.getElementById('activeSlide');
             const slideCounterEl = document.getElementById('slideCounter');
+            const slideDateEl = document.getElementById('slideDate');
             const slideTitleEl = document.getElementById('slideTitle');
             const slideDescriptionEl = document.getElementById('slideDescription');
             
@@ -769,6 +916,7 @@
             slideCounterEl.textContent = `${currentSlide + 1} of ${slides.length}`;
             
             // Update caption
+            slideDateEl.textContent = slide.date;
             slideTitleEl.textContent = slide.title;
             slideDescriptionEl.textContent = slide.description;
             
@@ -787,7 +935,7 @@
                 thumbnail.dataset.index = index;
                 
                 thumbnail.innerHTML = `
-                    <img src="${slide.image}" alt="${slide.title}" class="thumbnail-img">
+                    <img src="${slide.image}" alt="${slide.title}" class="thumbnail-img" onerror="this.src='https://images.unsplash.com/photo-1512389142860-9c449e58a543?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
                     <div class="thumbnail-overlay"></div>
                 `;
                 
@@ -851,6 +999,88 @@
             }
         }
         
+        // Grid View Functionality
+        function setupGridView() {
+            const gridViewBtn = document.getElementById('gridViewBtn');
+            
+            gridViewBtn.addEventListener('click', function() {
+                // Create grid view modal
+                const gridModal = document.createElement('div');
+                gridModal.className = 'grid-modal';
+                gridModal.innerHTML = `
+                    <div class="grid-header">
+                        <h2 class="grid-title">All Our Memories</h2>
+                        <button class="close-grid" id="closeGridView">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                    <div class="grid-container" id="gridContainer"></div>
+                `;
+                
+                document.body.appendChild(gridModal);
+                
+                // Populate grid
+                const gridContainer = document.getElementById('gridContainer');
+                slides.forEach((slide, index) => {
+                    const gridItem = document.createElement('div');
+                    gridItem.className = 'grid-item';
+                    
+                    gridItem.innerHTML = `
+                        <img src="${slide.image}" alt="${slide.title}" class="grid-image" onerror="this.src='https://images.unsplash.com/photo-1512389142860-9c449e58a543?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+                        <div class="grid-caption">
+                            <div class="grid-date">${slide.date}</div>
+                            <h3 class="grid-item-title">${slide.title}</h3>
+                        </div>
+                    `;
+                    
+                    gridItem.addEventListener('click', () => {
+                        currentSlide = index;
+                        updateActiveSlide();
+                        document.body.removeChild(gridModal);
+                    });
+                    
+                    gridContainer.appendChild(gridItem);
+                });
+                
+                // Close grid view
+                document.getElementById('closeGridView').addEventListener('click', () => {
+                    gridModal.style.animation = 'fadeOut 0.3s ease-out forwards';
+                    setTimeout(() => {
+                        if (gridModal.parentNode) {
+                            document.body.removeChild(gridModal);
+                        }
+                    }, 300);
+                });
+                
+                // Close on escape key
+                const closeOnEscape = function(e) {
+                    if (e.key === 'Escape') {
+                        gridModal.style.animation = 'fadeOut 0.3s ease-out forwards';
+                        setTimeout(() => {
+                            if (gridModal.parentNode) {
+                                document.body.removeChild(gridModal);
+                            }
+                        }, 300);
+                        document.removeEventListener('keydown', closeOnEscape);
+                    }
+                };
+                
+                document.addEventListener('keydown', closeOnEscape);
+                
+                // Close when clicking outside grid content
+                gridModal.addEventListener('click', function(e) {
+                    if (e.target === gridModal) {
+                        gridModal.style.animation = 'fadeOut 0.3s ease-out forwards';
+                        setTimeout(() => {
+                            if (gridModal.parentNode) {
+                                document.body.removeChild(gridModal);
+                            }
+                        }, 300);
+                    }
+                });
+            });
+        }
+        
         // Setup event listeners
         function setupEventListeners() {
             // Navigation buttons
@@ -860,7 +1090,10 @@
             // Play slideshow button
             document.getElementById('playSlideshow').addEventListener('click', startSlideshow);
             
-            // Keyboard navigation
+            // Grid view button
+            setupGridView();
+            
+            // Keyboard navigation for slideshow
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') prevSlide();
                 if (e.key === 'ArrowRight') nextSlide();
@@ -900,19 +1133,30 @@
             }
         }
         
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', initSlideshow);
-        
-        // Theme toggle for demo (you can integrate with your existing theme toggle)
+        // Theme toggle function
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
+            // Update the icon
+            const icon = document.querySelector('#theme-toggle .material-symbols-outlined');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.textContent = 'light_mode';
+            } else {
+                icon.textContent = 'dark_mode';
+            }
         }
         
-        // Add theme toggle to notification button for demo
-        document.querySelector('.notification-btn').addEventListener('click', toggleTheme);
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initSlideshow();
+            
+            // Set dark mode by default
+            document.body.classList.add('dark-mode');
+            const icon = document.querySelector('#theme-toggle .material-symbols-outlined');
+            icon.textContent = 'light_mode';
+            
+            // Add theme toggle to button
+            document.querySelector('#theme-toggle').addEventListener('click', toggleTheme);
+        });
     </script>
 </body>
-
 </html>
-
-
